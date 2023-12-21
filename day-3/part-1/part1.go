@@ -31,7 +31,6 @@ func main(){
 		slice1 = append(slice1, line)
 		slice2 = append(slice2, line)
 	}
-	// change all non-symbols to F
 	for i := 0; i < len(slice1); i++ {
 		slice2[i] = strings.ReplaceAll(slice2[i], ".", "F")
 		re := regexp.MustCompile(`\d`)
@@ -52,32 +51,25 @@ func main(){
 				check(err)
 				fmt.Printf("Current num: %d \n", currentNumToInt)
 				sum += currentNumToInt
-			}
-		
-		
-		
+			}		
 		}
 	}
 
 	fmt.Printf("Sum: %d \n", sum)
 }
 
-
 func checkIndexes(indexes [] int, sliceToCheck []string, currentSliceIndex int) bool { 
-	// check middle slices
 	isPartOfSlice := false
 	if(currentSliceIndex != 0 && currentSliceIndex != len(sliceToCheck)-1){
 			if(checkSliceForSymbol(sliceToCheck[currentSliceIndex-1], indexes[0], indexes[1]-1) || checkSliceForSymbol(sliceToCheck[currentSliceIndex+1], indexes[0], indexes[1]-1) || checkSidesOfSlices(sliceToCheck[currentSliceIndex], indexes)){
 				isPartOfSlice = true
 			}
 	}
-		//check first slice
 	if(currentSliceIndex == 0){	
 		if(checkSliceForSymbol(sliceToCheck[currentSliceIndex+1], indexes[0], indexes[1]-1) || checkSidesOfSlices(sliceToCheck[currentSliceIndex], indexes)){
 				isPartOfSlice = true
 		}
 	}
-	//check last slice
 	if(currentSliceIndex == len(sliceToCheck)-1){
 		if(checkSliceForSymbol(sliceToCheck[currentSliceIndex-1], indexes[0], indexes[1]-1) || checkSidesOfSlices(sliceToCheck[currentSliceIndex], indexes)){
 				isPartOfSlice = true
@@ -103,9 +95,6 @@ func checkSidesOfSlices (sliceToCheck string, indexes [] int) bool {
 }
 
 func checkSliceForSymbol(stringToEval string, firstInd int , secondInd int) bool {
-	fmt.Printf("String to eval: %s \n", stringToEval)
-	fmt.Printf("First ind: %d \n", firstInd)
-	fmt.Printf("Second ind: %d \n", secondInd)
 	if(firstInd <1){
 		return checkForSymbols(stringToEval, firstInd, secondInd+1)
 
@@ -113,16 +102,13 @@ func checkSliceForSymbol(stringToEval string, firstInd int , secondInd int) bool
 		return checkForSymbols(stringToEval, firstInd-1, secondInd)
 
 	} else {
-		fmt.Printf("Missing Char %s \n", string(stringToEval[secondInd+1]))
 		return checkForSymbols(stringToEval, firstInd-1, secondInd+1)
 	}
 
 }
 func checkForSymbols(stringToEval string, start int, end int) bool {
 	re := regexp.MustCompile(`[^F]`)
-	
 	for i := start; i <= end; i++ {
-		fmt.Printf("String to eval: %s \n", string(stringToEval[i]))
 		if(re.MatchString(string(stringToEval[i]))){
 			return true
 		}
@@ -132,13 +118,8 @@ func checkForSymbols(stringToEval string, start int, end int) bool {
 }
 
 func getIndexs (stringToEval string) [][]int {
-
 	re := regexp.MustCompile(`\d+`)
-
-	// extract numbers indexes
 	content := []byte(stringToEval)
 	indexes := re.FindAllIndex(content, -1)
-
-
 	return indexes
 }
