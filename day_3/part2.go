@@ -1,6 +1,7 @@
-package main
+package day_3
 
 import (
+	"Advent_Of_Code_2023/utils"
 	"bufio"
 	"fmt"
 	"os"
@@ -8,17 +9,12 @@ import (
 	"strconv"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 
-func main(){
+func Part2(){
 
-	file, err := os.Open("input.txt")
-	check(err)
+	file, err := os.Open("./data/day3.txt")
+	utils.Check(err)
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
@@ -33,7 +29,6 @@ func main(){
 	for i := 0; i < len(slice1); i++ {
 		re := regexp.MustCompile(`[^0-9]`)
 		slice2[i] = re.ReplaceAllString(slice2[i], "F")
-		fmt.Printf("Slice 2: %s \n", slice2[i])
 	}
 
 	for i := 0; i < len(slice1); i++ {
@@ -65,7 +60,7 @@ func getNums(sliceToCheck []string, indexOfSlice int, indexOfChar int) int{
 
 		if(currentIndexes[0]-1 == indexOfChar || currentIndexes[1] == indexOfChar){
 			currentNumToInt, err := strconv.Atoi(currentNum)
-			check(err)
+			utils.Check(err)
 			nums = append(nums, currentNumToInt)
 		
 		}
@@ -86,7 +81,6 @@ func getNums(sliceToCheck []string, indexOfSlice int, indexOfChar int) int{
 	if(len(bottomNums) > 0){
 		nums = append(nums, bottomNums...)
 	}
-	fmt.Printf("Current num AFTER: %v \n", nums)
 	finalNum := 0
 	if(len(nums) > 1){
 		for i := 0; i < len(nums); i++{
@@ -113,7 +107,7 @@ func getTopBottomNums(sliceToCheck []string, indexOfSlice int, indexOfChar int) 
 			if(j == indexOfChar || j == indexOfChar - 1 || j == indexOfChar + 1){
 				currentNum := string(stringToEval[currentIndexes[0]:currentIndexes[1]])
 				currentNumToInt, err := strconv.Atoi(currentNum)
-				check(err)
+				utils.Check(err)
 				nums = append(nums, currentNumToInt)
 				
 				break

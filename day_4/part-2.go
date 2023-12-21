@@ -1,26 +1,15 @@
-package main
+package day_4
 
 import (
+	"Advent_Of_Code_2023/utils"
 	"bufio"
 	"fmt"
 	"os"
 	"regexp"
-	"strconv"
 	"strings"
-	"time"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-func timer(name string) func() {
-    start := time.Now()
-    return func() {
-        fmt.Printf("%s took %v\n", name, time.Since(start))
-    }
-}
+
 
 type Card struct {
 	numberOfCards int
@@ -34,33 +23,11 @@ func addCard(card Card) {
 	cards = append(cards, card)
 }
 
-func convertStringsToNums(stringArr []string) []int {
-	var numArr []int
-	for i := 0; i < len(stringArr); i++ {
-		num, err := strconv.Atoi(stringArr[i])
-		check(err)
-		numArr = append(numArr, num)
-	}
-	return numArr
-}
 
-func sortNums(numArr []int) []int {
-	for i := 0; i < len(numArr); i++ {
-		for j := 0; j < len(numArr); j++ {
-			if numArr[i] < numArr[j] {
-				temp := numArr[i]
-				numArr[i] = numArr[j]
-				numArr[j] = temp
-			}
-		}
-	}
-	return numArr
-}
 
-func main(){
-	defer timer("main")()
-	file, err := os.Open("../input.txt")
-	check(err)
+func Part2(){
+	file, err := os.Open("./data/day4.txt")
+	utils.Check(err)
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)

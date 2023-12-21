@@ -1,6 +1,7 @@
-package main
+package day_2
 
 import (
+	"Advent_Of_Code_2023/utils"
 	"bufio"
 	"fmt"
 	"os"
@@ -8,16 +9,12 @@ import (
 	"strings"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 
-func main(){
-	file, err := os.Open("input.txt")
-	check(err)
+
+func Part2(){
+	file, err := os.Open("./data/day2.txt")
+	utils.Check(err)
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
@@ -26,7 +23,6 @@ func main(){
 		power := 0
 		
 		var line = scanner.Text()
-		fmt.Printf("Line: %s  \n", line)
 		//extract id
 	
 		stringWithoutId  := strings.Split(line, ":")[1]
@@ -44,7 +40,7 @@ func main(){
 				cubes := strings.Split(trimmedCubes, " ")
 				color := cubes[1]
 				number, err := strconv.Atoi(cubes[0])
-				check(err)
+				utils.Check(err)
 
 				switch color {
 					case "red":

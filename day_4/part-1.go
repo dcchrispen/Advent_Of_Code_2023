@@ -1,6 +1,7 @@
-package main
+package day_4
 
 import (
+	"Advent_Of_Code_2023/utils"
 	"bufio"
 	"fmt"
 	"os"
@@ -9,16 +10,12 @@ import (
 	"strings"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 
-func main(){
-	file, err := os.Open("../input.txt")
-	check(err)
+
+func Part1(){
+	file, err := os.Open("./data/day4.txt")
+	utils.Check(err)
 	defer file.Close()
 
 	sum :=0
@@ -26,7 +23,6 @@ func main(){
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan(){
 		var line = scanner.Text()
-		fmt.Printf("Line: %s  \n", line)
 		// get nums and store in two arrays
 		numbers := strings.Split(line, ":")[1]
 		winningNumStrings := strings.Split(numbers, "|")[0]
@@ -79,7 +75,7 @@ func convertStringsToNums(stringArr []string) []int {
 	var numArr []int
 	for i := 0; i < len(stringArr); i++ {
 		num, err := strconv.Atoi(stringArr[i])
-		check(err)
+		utils.Check(err)
 		numArr = append(numArr, num)
 	}
 	return numArr
