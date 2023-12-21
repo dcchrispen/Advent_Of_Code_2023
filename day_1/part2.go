@@ -1,6 +1,7 @@
-package main
+package day_1
 
 import (
+	"Advent_Of_Code_2023/utils"
 	"bufio"
 	"fmt"
 	"os"
@@ -9,23 +10,17 @@ import (
 	"strings"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 
-func main(){
-	file, err := os.Open("input.txt")
-	check(err)
+func Part2(){
+	file, err := os.Open("./data/day1.txt")
+	utils.Check(err)
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
 	sum := 0
 	for scanner.Scan(){
 		var line = scanner.Text()
-		fmt.Printf("Line: %s  \n", line)
 		var numsReplaced string
 		for i := 0; i < 10; i++ {
 			switch i {	
@@ -62,9 +57,8 @@ func main(){
 
 		finalStrArr := strings.Split(allDigits, "")
 		finalStr := finalStrArr[0] + finalStrArr[len(finalStrArr)-1]
-		fmt.Println(finalStr)
 		num, err := strconv.Atoi(finalStr)
-		check(err)
+		utils.Check(err)
 		sum = sum + num
 	}
 

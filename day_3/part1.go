@@ -1,6 +1,7 @@
-package main
+package day_3
 
 import (
+	"Advent_Of_Code_2023/utils"
 	"bufio"
 	"fmt"
 	"os"
@@ -9,17 +10,13 @@ import (
 	"strings"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 
-func main(){
 
-	file, err := os.Open("input.txt")
-	check(err)
+func Part1(){
+
+	file, err := os.Open("./data/day3.txt")
+	utils.Check(err)
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
@@ -40,7 +37,7 @@ func main(){
 
 	for i := 0; i < len(slice1); i++ {
 		stringToEval := slice1[i]
-		indexes := getIndexs(stringToEval)
+		indexes := getIndexes(stringToEval)
 		for j := 0; j < len(indexes); j++ {
 			currentIndexes := indexes[j]
 			isPart := checkIndexes(currentIndexes, slice2, i)
@@ -48,8 +45,7 @@ func main(){
 				currentNum := stringToEval[currentIndexes[0]:currentIndexes[1]]
 			
 				currentNumToInt, err := strconv.Atoi(currentNum)
-				check(err)
-				fmt.Printf("Current num: %d \n", currentNumToInt)
+				utils.Check(err)
 				sum += currentNumToInt
 			}		
 		}
@@ -117,7 +113,7 @@ func checkForSymbols(stringToEval string, start int, end int) bool {
 	return false
 }
 
-func getIndexs (stringToEval string) [][]int {
+func getIndexes (stringToEval string) [][]int {
 	re := regexp.MustCompile(`\d+`)
 	content := []byte(stringToEval)
 	indexes := re.FindAllIndex(content, -1)
