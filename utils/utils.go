@@ -17,6 +17,12 @@ func Timer(name string) func() {
 		fmt.Printf("%s took %v\n", name, time.Since(start))
 	}
 }
+func ConvertToInt(num string) int {
+
+	numInt, err := strconv.Atoi(num)
+	Check(err)
+	return numInt
+}
 
 func ConvertStringsToNums(stringArr []string) []int {
 	var numArr []int
