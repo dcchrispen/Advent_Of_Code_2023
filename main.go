@@ -6,7 +6,6 @@ import (
 	"Advent_Of_Code_2023/day_3"
 	"Advent_Of_Code_2023/day_4"
 	"Advent_Of_Code_2023/day_5"
-	"Advent_Of_Code_2023/utils"
 	"fmt"
 	"log"
 	"os"
@@ -40,14 +39,14 @@ func runDay(day string, part1, part2 func()) {
 	fmt.Printf("===== Day - %s =====\n", day)
 
 	if part1 != nil {
-		defer utils.Timer("Part 1")()
+		
 		fmt.Printf("===== Part - 1 =====\n")
 		part1()
 		
 	}
 
 	if part2 != nil {
-		defer utils.Timer("Part 2")()
+		
 		fmt.Printf("===== Part - 2 =====\n")
 
 		part2()
