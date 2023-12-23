@@ -9,6 +9,7 @@ import (
 
 
 func Part1(){
+	defer utils.Timer("Part 1")()
 
 	file, err := os.Open("./data/day.txt")
 	utils.Check(err)

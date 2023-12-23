@@ -6,6 +6,7 @@ import (
 	"Advent_Of_Code_2023/day_3"
 	"Advent_Of_Code_2023/day_4"
 	"Advent_Of_Code_2023/day_5"
+	"Advent_Of_Code_2023/day_6"
 	"fmt"
 	"log"
 	"os"
@@ -29,7 +30,8 @@ func main() {
 		runDay(day, day_4.Part1, day_4.Part2)
 	case "5":
 		runDay(day, day_5.Part1, day_5.Part2)
-	
+	case "6":
+		runDay(day, day_6.Part1, day_6.Part2)
 	default:
 		log.Fatalf("Unknown day: %s\n", day)
 	}

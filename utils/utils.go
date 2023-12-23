@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"regexp"
 	"strconv"
 	"time"
 )
@@ -47,3 +48,23 @@ func SortNums(numArr []int) []int {
 	return numArr
 }
 
+func GetNumArrayFromString(str string) []int {
+	var numArr []int
+	re := regexp.MustCompile(`(\d+)`)
+	numStrings := re.FindAllString(str, -1)
+	for i := 0; i < len(numStrings); i++ {
+		numArr = append(numArr, ConvertToInt(string(numStrings[i])))
+	}
+	return numArr
+}
+
+func FindMod(a int) int {
+	mod :=0
+	for i := 1; i < 100000; i++ {
+		if(a % i == 0){
+			mod = i
+			
+		}
+	}	
+	return mod
+}
