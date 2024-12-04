@@ -1,7 +1,7 @@
 package day_
 
 import (
-	"Advent_Of_Code_2023/utils"
+	"Advent_Of_Code_2024/utils"
 	"bufio"
 	"fmt"
 	"os"

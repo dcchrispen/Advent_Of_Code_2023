@@ -68,3 +68,37 @@ func FindMod(a int) int {
 	}	
 	return mod
 }
+
+func InsertIntoSliceAtIndex[T any](destination []T, element T, index int) []T {
+	if len(destination) == index {
+		return append(destination, element)
+	}
+
+	destination = append(destination[:index+1], destination[index:]...) // index < len(a)
+	destination[index] = element
+
+	return destination
+}
+
+func AbsDiffInt(x, y int) int {
+	if x < y {
+	   return y - x
+	}
+	return x - y
+ }
+ 
+ func FilterOutAtIndex(arr []int, index int) []int {
+    // Create a new slice with the same capacity as the original array
+    result := make([]int, 0, len(arr))
+
+    // Iterate over the original array
+    for i, v := range arr {
+        // If the current index is not the one to exclude, append to the result
+        if i != index {
+            result = append(result, v)
+        }
+    }
+
+    return result
+}
+
